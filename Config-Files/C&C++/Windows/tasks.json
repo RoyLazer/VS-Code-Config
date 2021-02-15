@@ -5,49 +5,31 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Compile and run",
       "type": "shell",
+      "label": "Compile and Run C++",
       "command": "",
-      "args": [
-        "cp",
-        "${file}",
-        "${workspaceFolder}",
-        "&&",
-        "g++",
-        "${fileBasename}",
-        "-o",
-        "test.out",
-        "&&",
-        "./test.out",
-        "<",
-        "input.txt",
-        ">",
-        "output.txt",
-        "&&",
-        "rm",
-        "*out",
-        "&&",
-        "rm",
-        "${fileBasename}"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true,
+      "args": ["g++","-std=c++17", "${file}", "-o", "${file_base_name}.exe", "&&" , "${file_base_name}.exe<input.txt>output.txt"],
+      "options": {
+        "cwd": "${workspaceFolder}"
       },
       "problemMatcher": {
-        "owner": "cpp",
-        "fileLocation": [
-          "relative",
-          "${workspaceRoot}"
-        ],
-        "pattern": {
-          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-          "file": 1,
-          "line": 2,
-          "column": 3,
-          "severity": 4,
-          "message": 5
-        }
+          "owner": "cpp",
+          "fileLocation": [
+            "relative",
+            "${workspaceRoot}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
+        },
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
     }
   ]
